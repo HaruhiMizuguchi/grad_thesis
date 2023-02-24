@@ -5,8 +5,9 @@ sys.path.append("function/VD_MD_Base")
 from function.exec import *
 from function.utils.process_data import *
 from function.utils import process_data
+from function.metrics.metrics_new import *
 
-### 各パラメータ
+
 ### 実行する手法
 method_list = ["PML-VD","Baseline","PML-MD","PML-NI","BR","ML-kNN"]
 ### 実行するデータ
@@ -19,12 +20,13 @@ val_list = [1,3,5,7,9]
 cv_start = 0
 cv_end = 5
 
-method_list = ["PML-NI","BR","ML-kNN"]
+method_list = ["PML-NI"]
 data_list = ['emotions']
 noise_list_multi = [50]
 val_list = [1]
 cv_start = 0
 cv_end = 1
+
 
 for method in method_list:
     for data in data_list:
@@ -35,7 +37,7 @@ for method in method_list:
         for p_noise in noise_list:
             for p_val in val_list:
                 for cv in range(cv_start,cv_end):
-                    print(f"method={method}, data={data}, noise={str(p_noise)}, val={str(p_val)}, cv={str(cv)}")
+                    print(f"start method={method}, data={data}, noise={str(p_noise)}, val={str(p_val)}, cv={str(cv)}")
                     ### データの読み込み
                     train_feature,train_cand,train_gt,test_feature,test_gt,train_val_feature,train_val_gt,train_noise_feature,train_noise_cand,batch_size = \
                         read_data(data,p_noise,p_val,cv)
@@ -98,4 +100,5 @@ for method in method_list:
                         print("this method is not supported.")
 
                     ### 評価の表示
-                    
+                    print(f"finish method={method}, data={data}, noise={str(p_noise)}, val={str(p_val)}, cv={str(cv)}")
+                    eval_and_print(creds,predict_labels,test_gt)
