@@ -70,3 +70,11 @@ def exactMatch(plabels,test_target):
             loss += 1
     
     return(loss/num_ins)
+
+def eval_and_print(creds,plabels,test_target):
+    a = hLoss(plabels,test_target)
+    b = rLoss(creds, test_target)
+    c = oError(creds, test_target)
+    d = Coverage(creds, test_target)
+    e = avgPre(creds, test_target)
+    print(f"hamming_loss={str(a)}, ranking_loss={str(b)}, oneerror={str(c)}, coverage={str(d)}, average_precision={str(e)}\n")
