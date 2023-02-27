@@ -1,3 +1,6 @@
+### インスタンス数 N, 特徴数 D とすると特徴量の入力は N×D の行列
+### クラス数 Q とするとラベルの入力は N×Q の行列(ラベルを持つとき1, 持たない時は0)
+
 from function.skmultilearn import skmultilearn
 import sys
 sys.path.append("function/skmultilearn")
@@ -8,6 +11,7 @@ from function.utils import process_data
 from function.metrics.metrics_new import *
 
 
+### ここを変更して実行箇所を変える
 ### 実行する手法
 method_list = ["PML-VD","Baseline","PML-MD","PML-NI","BR","ML-kNN"]
 ### 実行するデータ
